@@ -1,0 +1,14 @@
+.env
+*.log
+.DS_Store
+
+# Python virtual environment
+.venv/
+venv/
+
+# Excel temp files
+~$*.xlsx
+~$*.xls
+
+# Generated CSV files (optional - uncomment if you don't want to track them)
+# data/*.csv
