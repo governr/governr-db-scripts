@@ -1,0 +1,7 @@
+"af_name","atmp_name","atmp_code","atmp_version","atmp_status","atmp_is_active"
+"governr Position AI Risk Framework","governr Position System Risk Assessment","GOVR-SYSTEM-RISK","1","DRAFT","Y"
+"governr Position AI Risk Framework","governr Position Model Risk Assessment","GOVR-MODEL-RISK","1","DRAFT","Y"
+"governr Position AI Risk Framework","governr Position Agent Risk Assessment","GOVR-AGENT-RISK","1","DRAFT","Y"
+"governr Position AI Risk Framework","governr Position Dataset Risk Assessment","GOVR-DATASET-RISK","1","DRAFT","Y"
+"governr Position AI Risk Framework","governr Position API Risk Assessment","GOVR-API-RISK","1","DRAFT","Y"
+"governr Position AI Risk Framework","governr Position MCP Server Risk Assessment","GOVR-MCP-RISK","1","DRAFT","Y"
