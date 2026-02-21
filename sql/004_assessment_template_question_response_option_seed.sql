@@ -17,8 +17,8 @@ CREATE TEMP TABLE IF NOT EXISTS temp_response_options (
 -- Clear any existing data
 TRUNCATE temp_response_options;
 
--- Load CSV data
-\copy temp_response_options FROM './data/assessment_template_question_response_option.csv' WITH (FORMAT csv, HEADER)
+-- Load CSV data (path replaced by Python before execution)
+\copy temp_response_options FROM 'CSV_PATH_PLACEHOLDER' WITH (FORMAT csv, HEADER)
 
 -- Main logic with error handling
 DO $$

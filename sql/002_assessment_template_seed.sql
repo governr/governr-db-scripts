@@ -16,8 +16,8 @@ CREATE TEMP TABLE IF NOT EXISTS temp_templates (
 -- Clear any existing data
 TRUNCATE temp_templates;
 
--- Load CSV data
-\copy temp_templates FROM './data/assessment_template.csv' WITH (FORMAT csv, HEADER)
+-- Load CSV data (path replaced by Python before execution)
+\copy temp_templates FROM 'CSV_PATH_PLACEHOLDER' WITH (FORMAT csv, HEADER)
 
 -- Main logic with error handling
 DO $$

@@ -15,6 +15,26 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 
+def _get_csv_filename_for_sql(sql_file: str) -> str:
+    """
+    Map SQL seed files to their corresponding CSV filenames.
+    
+    Args:
+        sql_file: Path to the SQL file
+        
+    Returns:
+        str: Corresponding CSV filename
+    """
+    mapping = {
+        "001_assessment_framework_seed.sql": "assessment_framework.csv",
+        "002_assessment_template_seed.sql": "assessment_template.csv",
+        "003_assessment_template_question_seed.sql": "assessment_template_question.csv",
+        "004_assessment_template_question_response_option_seed.sql": "assessment_template_question_response_option.csv",
+    }
+    sql_basename = Path(sql_file).name
+    return mapping.get(sql_basename, "assessment_framework.csv")
+
+
 def parse_args() -> argparse.Namespace:
     """Parse command line arguments."""
     parser = argparse.ArgumentParser(
@@ -34,6 +54,11 @@ def parse_args() -> argparse.Namespace:
         "--sql-file",
         default="sql/001_assessment_framework_seed.sql",
         help="Path to the SQL file (default: sql/001_assessment_framework_seed.sql)",
+    )
+    parser.add_argument(
+        "--data-dir",
+        default="data/governr-ai-risk",
+        help="Directory containing CSV data files (default: data/governr-ai-risk)",
     )
     return parser.parse_args()
 
@@ -76,36 +101,46 @@ def main() -> int:
         print(f"Error: SQL file not found: {sql_file}")
         return 1
 
+    # Get absolute path to data directory
+    data_path = script_dir / args.data_dir
+    if not data_path.exists():
+        print(f"Error: Data directory not found: {data_path}")
+        return 1
+
     print(f"Running seed script...")
     print(f"  Tenant:   {args.tenant}")
     print(f"  Username: {args.username}")
     print(f"  Database: {db_name} @ {db_host}:{db_port}")
+    print(f"  Data:     {args.data_dir}")
     print()
 
-    # Build the psql command
-    # Use -q for quiet mode and capture output
+    # Determine CSV path based on SQL filename
+    csv_filename = _get_csv_filename_for_sql(args.sql_file)
+    csv_path = str(data_path / csv_filename).replace(chr(92), '/')  # Windows backslash to forward slash
+    
+    # Read SQL file and replace placeholder with actual CSV path
+    sql_content = sql_file.read_text(encoding="utf-8")
+    sql_content = sql_content.replace("CSV_PATH_PLACEHOLDER", csv_path)
+    
+    # Prepend session variable settings
+    sql_content = f"SET vars.tenant_name = '{args.tenant}';\nSET vars.username = '{args.username}';\n{sql_content}"
+
+    # Build the psql command - pipe SQL via stdin
     conn_string = f"host={db_host} port={db_port} dbname={db_name} user={db_user} password={db_password}"
 
     cmd = [
         "psql",
-        "-q",  # Quiet mode - suppress status messages
+        "-q",  # Quiet mode
         conn_string,
-        "-c", f"SET vars.tenant_name = '{args.tenant}';",
-        "-c", f"SET vars.username = '{args.username}';",
-        "-f", str(sql_file),
     ]
 
-    # Change to the script directory so relative paths in SQL work
-    os.chdir(script_dir)
+    # Run the command with SQL piped via stdin
+    result = subprocess.run(cmd, input=sql_content, capture_output=True, text=True)
 
-    # Run the command and capture output
-    result = subprocess.run(cmd, capture_output=True, text=True)
-
-    # Filter and display NOTICE messages
+    # Display NOTICE messages
     if result.stderr:
         for line in result.stderr.splitlines():
             if "NOTICE:" in line:
-                # Extract just the notice message after "NOTICE:"
                 notice = line.split("NOTICE:")[-1].strip()
                 print(f"  {notice}")
             elif "ERROR:" in line:

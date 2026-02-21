@@ -9,10 +9,11 @@ governr-db-scripts/
 ├── .env                    # Database connection credentials
 ├── requirements.txt        # Python dependencies
 ├── data/
-│   ├── assessment_framework.csv                        # Seed data for assessment frameworks
-│   ├── assessment_template.csv                         # Seed data for assessment templates
-│   ├── assessment_template_question.csv                # Seed data for template questions
-│   └── assessment_template_question_response_option.csv # Seed data for question response options
+│   └── governr-ai-risk/    # Assessment set: Governr AI Risk Framework
+│       ├── assessment_framework.csv                        # Seed data for assessment frameworks
+│       ├── assessment_template.csv                         # Seed data for assessment templates
+│       ├── assessment_template_question.csv                # Seed data for template questions
+│       └── assessment_template_question_response_option.csv # Seed data for question response options
 ├── scripts/
 │   ├── run_seed.py         # Run individual SQL seed scripts
 │   ├── run_all_seeds.py    # Run all seed scripts in order
@@ -23,6 +24,29 @@ governr-db-scripts/
     ├── 003_assessment_template_question_seed.sql       # Question seed
     └── 004_assessment_template_question_response_option_seed.sql  # Response option seed
 ```
+
+### Adding New Assessment Sets
+
+To add a new assessment set (e.g., `iso-42001`):
+
+1. Create a new subfolder in `data/`:
+   ```bash
+   mkdir data/iso-42001
+   ```
+
+2. Add your CSV files with the same filenames:
+   ```
+   data/iso-42001/
+   ├── assessment_framework.csv
+   ├── assessment_template.csv
+   ├── assessment_template_question.csv
+   └── assessment_template_question_response_option.csv
+   ```
+
+3. Run the seed with the `--data-dir` option:
+   ```bash
+   python scripts/run_all_seeds.py --tenant "org" --username "admin" --data-dir "data/iso-42001"
+   ```
 
 ## Setup
 
@@ -61,34 +85,44 @@ governr-db-scripts/
 Run all seed scripts in the correct order (frameworks → templates → questions → response options):
 
 ```bash
+# Using default data directory (data/governr-ai-risk)
 python scripts/run_all_seeds.py --tenant "defaultorg" --username "admin"
+
+# Using a different assessment set
+python scripts/run_all_seeds.py --tenant "defaultorg" --username "admin" --data-dir "data/iso-42001"
 ```
 
 **Parameters:**
 - `--tenant` (required): Tenant name matching `tenant.tn_tenant_name`
 - `--username` (required): Username matching `tenant_user.tu_username`
 - `--sql-dir` (optional): Directory containing SQL files (default: `sql`)
+- `--data-dir` (optional): Directory containing CSV data files (default: `data/governr-ai-risk`)
 
 ### Running Individual Seeds
 
 Run a specific seed script:
 
 ```bash
+# Using default data directory
 python scripts/run_seed.py --tenant "defaultorg" --username "admin"
+
+# Using a different assessment set
+python scripts/run_seed.py --tenant "defaultorg" --username "admin" --data-dir "data/iso-42001"
 ```
 
 **Parameters:**
 - `--tenant` (required): Tenant name matching `tenant.tn_tenant_name`
 - `--username` (required): Username matching `tenant_user.tu_username`
 - `--sql-file` (optional): Path to SQL file (default: `sql/001_assessment_framework_seed.sql`)
+- `--data-dir` (optional): Directory containing CSV data files (default: `data/governr-ai-risk`)
 
 **Examples:**
 ```bash
 # Run assessment framework seed (default)
 python scripts/run_seed.py --tenant "defaultorg" --username "admin"
 
-# Run assessment template seed
-python scripts/run_seed.py --tenant "defaultorg" --username "admin" --sql-file sql/002_assessment_template_seed.sql
+# Run assessment template seed with a different data set
+python scripts/run_seed.py --tenant "defaultorg" --username "admin" --sql-file sql/002_assessment_template_seed.sql --data-dir "data/iso-42001"
 
 # Run assessment template question seed
 python scripts/run_seed.py --tenant "defaultorg" --username "admin" --sql-file sql/003_assessment_template_question_seed.sql

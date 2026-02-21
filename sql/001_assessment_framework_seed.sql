@@ -15,8 +15,8 @@ CREATE TEMP TABLE IF NOT EXISTS temp_frameworks (
 -- Clear any existing data
 TRUNCATE temp_frameworks;
 
--- Load CSV data
-\copy temp_frameworks FROM './data/assessment_framework.csv' WITH (FORMAT csv, HEADER)
+-- Load CSV data (path replaced by Python before execution)
+\copy temp_frameworks FROM 'CSV_PATH_PLACEHOLDER' WITH (FORMAT csv, HEADER)
 
 -- Main logic with error handling
 DO $$

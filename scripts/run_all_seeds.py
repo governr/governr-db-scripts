@@ -36,6 +36,11 @@ def parse_args() -> argparse.Namespace:
         default="sql",
         help="Directory containing SQL seed files (default: sql)",
     )
+    parser.add_argument(
+        "--data-dir",
+        default="data/governr-ai-risk",
+        help="Directory containing CSV data files (default: data/governr-ai-risk)",
+    )
     return parser.parse_args()
 
 
@@ -61,12 +66,21 @@ def get_seed_files(sql_dir: Path) -> list[Path]:
     return seed_files
 
 
+# Mapping from SQL filename to CSV filename
+CSV_MAPPING = {
+    "001_assessment_framework_seed.sql": "assessment_framework.csv",
+    "002_assessment_template_seed.sql": "assessment_template.csv",
+    "003_assessment_template_question_seed.sql": "assessment_template_question.csv",
+    "004_assessment_template_question_response_option_seed.sql": "assessment_template_question_response_option.csv",
+}
+
+
 def run_seed_file(
     sql_file: Path,
     tenant: str,
     username: str,
+    data_path: Path,
     conn_string: str,
-    script_dir: Path,
 ) -> tuple[bool, str]:
     """
     Run a single seed SQL file.
@@ -75,22 +89,30 @@ def run_seed_file(
         sql_file: Path to the SQL file.
         tenant: Tenant name.
         username: Username.
+        data_path: Path to the data directory.
         conn_string: PostgreSQL connection string.
-        script_dir: Base script directory.
 
     Returns:
         Tuple of (success, output_message).
     """
+    # Get CSV filename for this SQL file
+    csv_filename = CSV_MAPPING.get(sql_file.name, "assessment_framework.csv")
+    csv_path = str(data_path / csv_filename).replace(chr(92), '/')  # Windows backslash to forward slash
+    
+    # Read SQL file and replace placeholder
+    sql_content = sql_file.read_text(encoding="utf-8")
+    sql_content = sql_content.replace("CSV_PATH_PLACEHOLDER", csv_path)
+    
+    # Prepend session variable settings
+    sql_content = f"SET vars.tenant_name = '{tenant}';\nSET vars.username = '{username}';\n{sql_content}"
+
     cmd = [
         "psql",
         "-q",
         conn_string,
-        "-c", f"SET vars.tenant_name = '{tenant}';",
-        "-c", f"SET vars.username = '{username}';",
-        "-f", str(sql_file),
     ]
 
-    result = subprocess.run(cmd, capture_output=True, text=True, cwd=script_dir)
+    result = subprocess.run(cmd, input=sql_content, capture_output=True, text=True)
 
     messages = []
     if result.stderr:
@@ -159,13 +181,19 @@ def main() -> int:
     # Build connection string
     conn_string = f"host={db_host} port={db_port} dbname={db_name} user={db_user} password={db_password}"
 
+    # Get absolute path to data directory
+    data_path = script_dir / args.data_dir
+    if not data_path.exists():
+        print(f"Error: Data directory not found: {data_path}")
+        return 1
+
     # Run each seed file
     success_count = 0
     failed_file = None
 
     for sql_file in seed_files:
         print(f"  [{sql_file.name}]")
-        success, output = run_seed_file(sql_file, args.tenant, args.username, conn_string, script_dir)
+        success, output = run_seed_file(sql_file, args.tenant, args.username, data_path, conn_string)
 
         if output:
             for line in output.splitlines():
