@@ -1,0 +1,301 @@
+Response Code,Risk ID,Asset Type,Risk Name,Score,Maturity Level,Response Option
+AGT-Q01-R01,AGT-Q01,Agent,Tool Misuse,0,Gap,Agents have full access to all tools without limits.
+AGT-Q01-R02,AGT-Q01,Agent,Tool Misuse,25,Weak,Static access control; no runtime policy checks.
+AGT-Q01-R03,AGT-Q01,Agent,Tool Misuse,50,Baseline,Role-based tool access assigned per agent persona.
+AGT-Q01-R04,AGT-Q01,Agent,Tool Misuse,75,Robust,Runtime policy checks for action approval using Open Policy Agent (OPA) or Casbin.
+AGT-Q01-R05,AGT-Q01,Agent,Tool Misuse,100,Compliant,Context-aware execution with dynamic tool scoping via Pydantic AI validators.
+AGT-Q02-R01,AGT-Q02,Agent,Goal Misalignment,0,Gap,Agents pursue unintended or unbounded objectives.
+AGT-Q02-R02,AGT-Q02,Agent,Goal Misalignment,25,Weak,Manual monitoring of agent logs for goal drift.
+AGT-Q02-R03,AGT-Q02,Agent,Goal Misalignment,50,Baseline,Strictly bounded prompts with termination criteria.
+AGT-Q02-R04,AGT-Q02,Agent,Goal Misalignment,75,Robust,Scoped objectives and iteration limits defined via LangChain callbacks.
+AGT-Q02-R05,AGT-Q02,Agent,Goal Misalignment,100,Compliant,Strict outcome validation using Pydantic output schemas to prevent drift.
+AGT-Q03-R01,AGT-Q03,Agent,Prompt Injection,0,Gap,Malicious context directly hijacks agent reasoning.
+AGT-Q03-R02,AGT-Q03,Agent,Prompt Injection,25,Weak,Basic input sanitisation for known attack strings.
+AGT-Q03-R03,AGT-Q03,Agent,Prompt Injection,50,Baseline,Policy-as-code engines used for plan approval pre-execution.
+AGT-Q03-R04,AGT-Q03,Agent,Prompt Injection,75,Robust,Multi-layer guardrails on reasoning paths via Open Policy Agent (OPA).
+AGT-Q03-R05,AGT-Q03,Agent,Prompt Injection,100,Compliant,Zero-trust context architecture using Lakera Guard to isolate agent reasoning.
+AGT-Q04-R01,AGT-Q04,Agent,Privilege Escalation,0,Gap,Agent operates as root or with administrative privileges.
+AGT-Q04-R02,AGT-Q04,Agent,Privilege Escalation,25,Weak,Hardcoded credentials; broad access across systems.
+AGT-Q04-R03,AGT-Q04,Agent,Privilege Escalation,50,Baseline,Least-privilege permissions; limited to non-destructive tools.
+AGT-Q04-R04,AGT-Q04,Agent,Privilege Escalation,75,Robust,Dynamic permission scoping based on task context via SpiffWorkflow.
+AGT-Q04-R05,AGT-Q04,Agent,Privilege Escalation,100,Compliant,Just-in-time tokens and restricted session-based privileges via Temporal.io.
+AGT-Q05-R01,AGT-Q05,Agent,Shared State Poisoning,0,Gap,Universal memory shared across all agent cohorts.
+AGT-Q05-R02,AGT-Q05,Agent,Shared State Poisoning,25,Weak,Manual intervention to clear session data periodically.
+AGT-Q05-R03,AGT-Q05,Agent,Shared State Poisoning,50,Baseline,Per-session memory isolation implemented.
+AGT-Q05-R04,AGT-Q05,Agent,Shared State Poisoning,75,Robust,Isolated vector stores using Pinecone namespaces to prevent contamination.
+AGT-Q05-R05,AGT-Q05,Agent,Shared State Poisoning,100,Compliant,Cryptographic tenant isolation in memory via PGVector per-tenant stores.
+AGT-Q06-R01,AGT-Q06,Agent,Infinite Loops,0,Gap,No monitoring for recursive tool calling.
+AGT-Q06-R02,AGT-Q06,Agent,Infinite Loops,25,Weak,Manual stop implemented when resource costs spike.
+AGT-Q06-R03,AGT-Q06,Agent,Infinite Loops,50,Baseline,Iteration limits enforced at the orchestrator level.
+AGT-Q06-R04,AGT-Q06,Agent,Infinite Loops,75,Robust,Recursion limits and loop detection callbacks via LangChain.
+AGT-Q06-R05,AGT-Q06,Agent,Infinite Loops,100,Compliant,Automated circuit breakers for recursive patterns via Resilience4j.
+AGT-Q07-R01,AGT-Q07,Agent,Data Exfiltration,0,Gap,Agents send sensitive data to unverified endpoints.
+AGT-Q07-R02,AGT-Q07,Agent,Data Exfiltration,25,Weak,Basic egress filtering on known tool endpoints.
+AGT-Q07-R03,AGT-Q07,Agent,Data Exfiltration,50,Baseline,Static DLP scanning on common exfiltration paths.
+AGT-Q07-R04,AGT-Q07,Agent,Data Exfiltration,75,Robust,Inline redaction of PII/secrets in agent tool outputs via Presidio.
+AGT-Q07-R05,AGT-Q07,Agent,Data Exfiltration,100,Compliant,Real-time exfiltration blocking using Nightfall AI or Lakera Guard.
+AGT-Q08-R01,AGT-Q08,Agent,Over-Automation,0,Gap,Fully autonomous execution of high-risk financial actions.
+AGT-Q08-R02,AGT-Q08,Agent,Over-Automation,25,Weak,Post-execution alerts; no ability to halt actions.
+AGT-Q08-R03,AGT-Q08,Agent,Over-Automation,50,Baseline,Manual flagging of critical tasks for potential review.
+AGT-Q08-R04,AGT-Q08,Agent,Over-Automation,75,Robust,Risk-scored task classification and approval queues via n8n nodes.
+AGT-Q08-R05,AGT-Q08,Agent,Over-Automation,100,Compliant,Hard human-in-the-loop gating for all financial tasks via LangGraph.
+AGT-Q09-R01,AGT-Q09,Agent,Context Overflow,0,Gap,Excessive context leading to model hallucinations.
+AGT-Q09-R02,AGT-Q09,Agent,Context Overflow,25,Weak,Manual prompt engineering to reduce context window usage.
+AGT-Q09-R03,AGT-Q09,Agent,Context Overflow,50,Baseline,Hard token limits enforced on context windows.
+AGT-Q09-R04,AGT-Q09,Agent,Context Overflow,75,Robust,Dynamic context truncation and window management via LangChain.
+AGT-Q09-R05,AGT-Q09,Agent,Context Overflow,100,Compliant,Intelligent summarisation and schema validation via Pydantic.
+AGT-Q10-R01,AGT-Q10,Agent,Tool Chain Abuse,0,Gap,Chaining benign tools for malicious outcomes.
+AGT-Q10-R02,AGT-Q10,Agent,Tool Chain Abuse,25,Weak,Manual review of common tool-chain runbooks.
+AGT-Q10-R03,AGT-Q10,Agent,Tool Chain Abuse,50,Baseline,Policy-as-code approval for common sequences.
+AGT-Q10-R04,AGT-Q10,Agent,Tool Chain Abuse,75,Robust,Risk-gated orchestration using Airflow sensors to score impact.
+AGT-Q10-R05,AGT-Q10,Agent,Tool Chain Abuse,100,Compliant,Automated state transition checks via Temporal workflows.
+API-Q01-R01,API-Q01,API,API Key Abuse,0,Gap,Static keys with no rotation or MFA.
+API-Q01-R02,API-Q01,API,API Key Abuse,25,Weak,Long-lived keys with manual tracking.
+API-Q01-R03,API-Q01,API,API Key Abuse,50,Baseline,Key rotation policy in place with vault storage.
+API-Q01-R04,API-Q01,API,API Key Abuse,75,Robust,Automated rotation via HashiCorp Vault or AWS Secrets Manager.
+API-Q01-R05,API-Q01,API,API Key Abuse,100,Compliant,"Short-lived JWTs and secure auth via OAuth2, Keycloak, or Auth0."
+API-Q02-R01,API-Q02,API,Rate Limit Bypass,0,Gap,No throttling; high-volume extraction possible.
+API-Q02-R02,API-Q02,API,Rate Limit Bypass,25,Weak,Static global limits applied at the gateway.
+API-Q02-R03,API-Q02,API,Rate Limit Bypass,50,Baseline,Per-key and global rate limits implemented.
+API-Q02-R04,API-Q02,API,Rate Limit Bypass,75,Robust,Behavioural detection for anomaly query volumes via Splunk UEBA.
+API-Q02-R05,API-Q02,API,Rate Limit Bypass,100,Compliant,ML-based baselines and real-time adaptive throttling.
+API-Q03-R01,API-Q03,API,Input Injection,0,Gap,No backend validation; malicious payloads accepted.
+API-Q03-R02,API-Q03,API,Input Injection,25,Weak,Basic keyword-based input sanitisation.
+API-Q03-R03,API-Q03,API,Input Injection,50,Baseline,Backend validation logic embedded in the API layer.
+API-Q03-R04,API-Q03,API,Input Injection,75,Robust,Inline DLP scanning before context release via Nightfall AI or Presidio.
+API-Q03-R05,API-Q03,API,Input Injection,100,Compliant,Zero-trust ingress with real-time payload inspection using Lakera Guard.
+API-Q04-R01,API-Q04,API,Over-Permissive Scopes,0,Gap,Universal tokens allowing all operations.
+API-Q04-R02,API-Q04,API,Over-Permissive Scopes,25,Weak,Broad role-based access; high privilege escalation risk.
+API-Q04-R03,API-Q04,API,Over-Permissive Scopes,50,Baseline,Granular RBAC scoping APIs by asset type and action.
+API-Q04-R04,API-Q04,API,Over-Permissive Scopes,75,Robust,FastAPI-integrated middleware using Casbin for fine-grained control.
+API-Q04-R05,API-Q04,API,Over-Permissive Scopes,100,Compliant,Dynamic scope assignment and just-in-time (JIT) API permissions.
+API-Q05-R01,API-Q05,API,Verbose Errors,0,Gap,Full stack traces leaked in error responses.
+API-Q05-R02,API-Q05,API,Verbose Errors,25,Weak,Generic error messages with some technical detail.
+API-Q05-R03,API-Q05,API,Verbose Errors,50,Baseline,Internal codes mapped to external IDs; no secrets leaked.
+API-Q05-R04,API-Q05,API,Verbose Errors,75,Robust,Automated redaction of error payloads via Presidio.
+API-Q05-R05,API-Q05,API,Verbose Errors,100,Compliant,Fully sanitized/encrypted logs with no prompt or secret leakage.
+API-Q06-R01,API-Q06,API,No Client Isolation,0,Gap,Shared keys for all tenants; multi-tenant compromise risk.
+API-Q06-R02,API-Q06,API,No Client Isolation,25,Weak,Static client buckets; no strict isolation.
+API-Q06-R03,API-Q06,API,No Client Isolation,50,Baseline,Token-based identification of unique clients.
+API-Q06-R04,API-Q06,API,No Client Isolation,75,Robust,RBAC-enforced isolation by action and asset using Casbin.
+API-Q06-R05,API-Q06,API,No Client Isolation,100,Compliant,Cryptographic multi-tenant isolation with per-client routing.
+API-Q07-R01,API-Q07,API,Missing Quotas,0,Gap,Unbounded compute/token consumption.
+API-Q07-R02,API-Q07,API,Missing Quotas,25,Weak,Manual billing alerts triggered after thresholds.
+API-Q07-R03,API-Q07,API,Missing Quotas,50,Baseline,Static monthly quotas assigned per API key.
+API-Q07-R04,API-Q07,API,Missing Quotas,75,Robust,Tiered quotas enforced via Redis-backed limiting.
+API-Q07-R05,API-Q07,API,Missing Quotas,100,Compliant,Real-time token gating and automated resource circuit breakers.
+API-Q08-R01,API-Q08,API,Weak Rate Limiting,0,Gap,No protection against service degradation.
+API-Q08-R02,API-Q08,API,Weak Rate Limiting,25,Weak,Basic IP-based rate limiting.
+API-Q08-R03,API-Q08,API,Weak Rate Limiting,50,Baseline,Standard per-key rate limiting implementation.
+API-Q08-R04,API-Q08,API,Weak Rate Limiting,75,Robust,Distributed limiting and burst protection using FastAPI-Limiter.
+API-Q08-R05,API-Q08,API,Weak Rate Limiting,100,Compliant,Global protective gates with Redis-backed persistence.
+API-Q09-R01,API-Q09,API,No Logging,0,Gap,No traffic logs; blind monitoring of abuse.
+API-Q09-R02,API-Q09,API,No Logging,25,Weak,Standard access logs; unstructured text.
+API-Q09-R03,API-Q09,API,No Logging,50,Baseline,Structured decision and action logs.
+API-Q09-R04,API-Q09,API,No Logging,75,Robust,Tamper-proof traces stored in ELK stack or ClickHouse.
+API-Q09-R05,API-Q09,API,No Logging,100,Compliant,Full replayable traces for all orchestration paths.
+API-Q10-R01,API-Q10,API,Legacy Auth,0,Gap,Basic auth or keys without rotation.
+API-Q10-R02,API-Q10,API,Legacy Auth,25,Weak,Static keys with irregular manual updates.
+API-Q10-R03,API-Q10,API,Legacy Auth,50,Baseline,Standard OAuth2 implementation.
+API-Q10-R04,API-Q10,API,Legacy Auth,75,Robust,Vault-integrated rotation with defined policies.
+API-Q10-R05,API-Q10,API,Legacy Auth,100,Compliant,MFA enabled with short-lived JWTs for all model endpoints.
+DST-Q01-R01,DST-Q01,Dataset,Data Poisoning,0,Gap,No lineage or verification. Untracked data modifications allow malicious samples.
+DST-Q01-R02,DST-Q01,Dataset,Data Poisoning,25,Weak,Manual tracking. Logs of primary sources; no systematic integrity scanning.
+DST-Q01-R03,DST-Q01,Dataset,Data Poisoning,50,Baseline,Automated internal lineage. Basic provenance tracking via Apache Atlas.
+DST-Q01-R04,DST-Q01,Dataset,Data Poisoning,75,Robust,Validated integrity. Provenance tracked upstream; hashes validated via DataHub.
+DST-Q01-R05,DST-Q01,Dataset,Data Poisoning,100,Compliant,Leading detection. Real-time adversarial scans using ART or CleanLab.
+DST-Q02-R01,DST-Q02,Dataset,PII Leakage,0,Gap,Raw PII exposed. Discovery or masking is absent; model memorises sensitive records.
+DST-Q02-R02,DST-Q02,Dataset,PII Leakage,25,Weak,Manual redaction. Ad-hoc removal of high-profile fields; no automation.
+DST-Q02-R03,DST-Q02,Dataset,PII Leakage,50,Baseline,Automated scanners. Pipeline scanners like Nabu Casa flag some data.
+DST-Q02-R04,DST-Q02,Dataset,PII Leakage,75,Robust,Automated classification. Data classified/quarantined via Microsoft Information Protection.
+DST-Q02-R05,DST-Q02,Dataset,PII Leakage,100,Compliant,Real-time DLP. Validated tokenisation and privacy layers using Presidio or Opacus.
+DST-Q03-R01,DST-Q03,Dataset,Data Drift,0,Gap,No monitoring. Silent distribution shifts cause model performance degradation.
+DST-Q03-R02,DST-Q03,Dataset,Data Drift,25,Weak,Irregular checks. Ad-hoc manual verification of data distribution.
+DST-Q03-R03,DST-Q03,Dataset,Data Drift,50,Baseline,Schema validation. Freshness and schema checks via Data Quality DBT.
+DST-Q03-R04,DST-Q03,Dataset,Data Drift,75,Robust,Continuous monitoring. Drift alerts and tracking implemented via Evidently AI.
+DST-Q03-R05,DST-Q03,Dataset,Data Drift,100,Compliant,Automated gating. Drift-driven circuit breakers using WhyLabs and Great Expectations.
+DST-Q04-R01,DST-Q04,Dataset,Secrets Exposure,0,Gap,Cleartext credentials. API keys or credentials embedded in training/RAG data.
+DST-Q04-R02,DST-Q04,Dataset,Secrets Exposure,25,Weak,Manual search. Ad-hoc removal of keys upon discovery; high risk of oversight.
+DST-Q04-R03,DST-Q04,Dataset,Secrets Exposure,50,Baseline,Automated scanning. Keyword scanners in pipelines for common secret formats.
+DST-Q04-R04,DST-Q04,Dataset,Secrets Exposure,75,Robust,Ingestion masking. Secrets automatically identified/redacted via Microsoft Information Protection.
+DST-Q04-R05,DST-Q04,Dataset,Secrets Exposure,100,Compliant,Vault integration. Automated revocation and sanitisation via HashiCorp Vault.
+DST-Q05-R01,DST-Q05,Dataset,Supply Chain Poisoning,0,Gap,No 3rd party verification. Ingestion from public repos without technical checks.
+DST-Q05-R02,DST-Q05,Dataset,Supply Chain Poisoning,25,Weak,Reputation reliance. Trusting vendor claims without independent verification.
+DST-Q05-R03,DST-Q05,Dataset,Supply Chain Poisoning,50,Baseline,Periodic audits. Manual auditing of third-party data samples quarterly.
+DST-Q05-R04,DST-Q05,Dataset,Supply Chain Poisoning,75,Robust,Automated 3rd party lineage. Checksum validation and source tracking via DataHub.
+DST-Q05-R05,DST-Q05,Dataset,Supply Chain Poisoning,100,Compliant,Real-time integrity. Continuous monitoring of external repositories via ART tools.
+DST-Q06-R01,DST-Q06,Dataset,Over-Retention,0,Gap,Indefinite storage. Long-term storage expands the breach blast radius.
+DST-Q06-R02,DST-Q06,Dataset,Over-Retention,25,Weak,Manual deletion. Data purged manually following project closure; inconsistent.
+DST-Q06-R03,DST-Q06,Dataset,Over-Retention,50,Baseline,Policy defined. Retention periods defined by data class; manually enforced.
+DST-Q06-R04,DST-Q06,Dataset,Over-Retention,75,Robust,Automated purging. Cron-based purging and PostgreSQL partitioning implemented.
+DST-Q06-R05,DST-Q06,Dataset,Over-Retention,100,Compliant,Lifecycle-driven. Automated policy-driven deletion via S3 lifecycle policies or Airflow.
+DST-Q07-R01,DST-Q07,Dataset,Lineage Gaps,0,Gap,No modification tracking. Incident investigations fail due to lack of audit trails.
+DST-Q07-R02,DST-Q07,Dataset,Lineage Gaps,25,Weak,Manual spreadsheets. Major versions tracked in shared documents.
+DST-Q07-R03,DST-Q07,Dataset,Lineage Gaps,50,Baseline,Final set versioning. Versioning applied only to final production training sets.
+DST-Q07-R04,DST-Q07,Dataset,Lineage Gaps,75,Robust,Full provenance. Audit trails for all modifications tracked via Apache Atlas.
+DST-Q07-R05,DST-Q07,Dataset,Lineage Gaps,100,Compliant,"Metadata management. Real-time, comprehensive lineage mapping via DataHub."
+DST-Q08-R01,DST-Q08,Dataset,Quality Degradation,0,Gap,No validation. Garbage-in-garbage-out leads to systematic decision errors.
+DST-Q08-R02,DST-Q08,Dataset,Quality Degradation,25,Weak,Ad-hoc samples. Visual inspection of samples before training.
+DST-Q08-R03,DST-Q08,Dataset,Quality Degradation,50,Baseline,Automated checks. Freshness and schema checks run at pipeline ingress.
+DST-Q08-R04,DST-Q08,Dataset,Quality Degradation,75,Robust,Continuous QA. End-to-end signal quality validation via Monte Carlo.
+DST-Q08-R05,DST-Q08,Dataset,Quality Degradation,100,Compliant,CI/CD quality gating. Automated pipeline halts for quality failures via Great Expectations.
+DST-Q09-R01,DST-Q09,Dataset,Membership Inference,0,Gap,No privacy controls. Attackers can determine if specific records were in training set.
+DST-Q09-R02,DST-Q09,Dataset,Membership Inference,25,Weak,Basic masking. Standard identification of primary keys only.
+DST-Q09-R03,DST-Q09,Dataset,Membership Inference,50,Baseline,Statistical de-identification. Manual application of Faker library for anonymisation.
+DST-Q09-R04,DST-Q09,Dataset,Membership Inference,75,Robust,Advanced pseudonymisation. Validated de-identification tested for reconstruction.
+DST-Q09-R05,DST-Q09,Dataset,Membership Inference,100,Compliant,DP Integration. Differential privacy integrated into training via Opacus.
+DST-Q10-R01,DST-Q10,Dataset,Synthetic Data Failure,0,Gap,No quality testing. Poor synthetic data mimics real poisoning effects.
+DST-Q10-R02,DST-Q10,Dataset,Synthetic Data Failure,25,Weak,Visual inspection. Samples reviewed manually for realism.
+DST-Q10-R03,DST-Q10,Dataset,Synthetic Data Failure,50,Baseline,Statistical comparison. Automated comparison between real and synthetic sets.
+DST-Q10-R04,DST-Q10,Dataset,Synthetic Data Failure,75,Robust,Poison detection. Poison indicators scanned in all synthetic sets pre-usage.
+DST-Q10-R05,DST-Q10,Dataset,Synthetic Data Failure,100,Compliant,Adversarial gating. Synthetic quality gating via Adversarial Robustness Toolbox (ART).
+MCP-Q01-R01,MCP-Q01,MCP Server,Rogue MCP Servers,0,Gap,Unverified/unknown servers receive agent context.
+MCP-Q01-R02,MCP-Q01,MCP Server,Rogue MCP Servers,25,Weak,Manual checking of endpoints against static lists.
+MCP-Q01-R03,MCP-Q01,MCP Server,Rogue MCP Servers,50,Baseline,GitOps change control for configurations.
+MCP-Q01-R04,MCP-Q01,MCP Server,Rogue MCP Servers,75,Robust,Whitelist of approved endpoints via Flux.
+MCP-Q01-R05,MCP-Q01,MCP Server,Rogue MCP Servers,100,Compliant,Curated registry with signature validation in PostgreSQL via ArgoCD.
+MCP-Q02-R01,MCP-Q02,MCP Server,Context Oversharing,0,Gap,Full agent context shared with all tools.
+MCP-Q02-R02,MCP-Q02,MCP Server,Context Oversharing,25,Weak,Manual truncation of prompts before calls.
+MCP-Q02-R03,MCP-Q02,MCP Server,Context Oversharing,50,Baseline,Static token length limits enforced.
+MCP-Q02-R04,MCP-Q02,MCP Server,Context Oversharing,75,Robust,Need-to-know truncation via Pydantic validators.
+MCP-Q02-R05,MCP-Q02,MCP Server,Context Oversharing,100,Compliant,Inline PII masking and context minimisation via Presidio integration.
+MCP-Q03-R01,MCP-Q03,MCP Server,Unencrypted MCP,0,Gap,Cleartext traffic; vulnerable to MITM attacks.
+MCP-Q03-R02,MCP-Q03,MCP Server,Unencrypted MCP,25,Weak,Standard SSL/TLS without certificate validation.
+MCP-Q03-R03,MCP-Q03,MCP Server,Unencrypted MCP,50,Baseline,Enforced TLS 1.2+ for all tool communications.
+MCP-Q03-R04,MCP-Q03,MCP Server,Unencrypted MCP,75,Robust,Certificate pinning implemented via FastAPI SSL.
+MCP-Q03-R05,MCP-Q03,MCP Server,Unencrypted MCP,100,Compliant,Mandatory mTLS with cert-manager for all tool sessions.
+MCP-Q04-R01,MCP-Q04,MCP Server,Tool Injection,0,Gap,Malicious tools executing arbitrary code (RCE).
+MCP-Q04-R02,MCP-Q04,MCP Server,Tool Injection,25,Weak,Static list of allowed tools reviewed manually.
+MCP-Q04-R03,MCP-Q04,MCP Server,Tool Injection,50,Baseline,Registry-based validation of tool signatures.
+MCP-Q04-R04,MCP-Q04,MCP Server,Tool Injection,75,Robust,Runtime verification of tool integrity via PostgreSQL registry.
+MCP-Q04-R05,MCP-Q04,MCP Server,Tool Injection,100,Compliant,Sandboxed tool execution with cryptographically signed whitelists.
+MCP-Q05-R01,MCP-Q05,MCP Server,MCP Chain Abuse,0,Gap,Tool chaining leads to unintended multi-hop attacks.
+MCP-Q05-R02,MCP-Q05,MCP Server,MCP Chain Abuse,25,Weak,Manual review of common tool-chain runbooks.
+MCP-Q05-R03,MCP-Q05,MCP Server,MCP Chain Abuse,50,Baseline,Policy-as-code approval for common tool sequences.
+MCP-Q05-R04,MCP-Q05,MCP Server,MCP Chain Abuse,75,Robust,Enforced runtime policy checks via Casbin.
+MCP-Q05-R05,MCP-Q05,MCP Server,MCP Chain Abuse,100,Compliant,Zero-trust action approval and reasoning isolation via Open Policy Agent (OPA).
+MCP-Q06-R01,MCP-Q06,MCP Server,No MCP Registry,0,Gap,Shadow MCP deployments; untracked attack surface.
+MCP-Q06-R02,MCP-Q06,MCP Server,No MCP Registry,25,Weak,Ad-hoc tracking of servers in documentation.
+MCP-Q06-R03,MCP-Q06,MCP Server,No MCP Registry,50,Baseline,Automated discovery scans for active endpoints.
+MCP-Q06-R04,MCP-Q06,MCP Server,No MCP Registry,75,Robust,Centralised PostgreSQL registry for all approved assets.
+MCP-Q06-R05,MCP-Q06,MCP Server,No MCP Registry,100,Compliant,Registry-enforced gating integrated with ArgoCD for all deployments.
+MCP-Q07-R01,MCP-Q07,MCP Server,Weak Tool Auth,0,Gap,Tools callable without agent context validation.
+MCP-Q07-R02,MCP-Q07,MCP Server,Weak Tool Auth,25,Weak,Reliance on basic API keys or shared secrets.
+MCP-Q07-R03,MCP-Q07,MCP Server,Weak Tool Auth,50,Baseline,Role-based tool access implemented.
+MCP-Q07-R04,MCP-Q07,MCP Server,Weak Tool Auth,75,Robust,Context-aware tool authentication via FastAPI SSL.
+MCP-Q07-R05,MCP-Q07,MCP Server,Weak Tool Auth,100,Compliant,Just-in-time (JIT) tool tokens and mTLS authentication.
+MCP-Q08-R01,MCP-Q08,MCP Server,Egress Blind Spots,0,Gap,Undetected data exfiltration via tool endpoints.
+MCP-Q08-R02,MCP-Q08,MCP Server,Egress Blind Spots,25,Weak,Basic proxy logging for high-level traffic.
+MCP-Q08-R03,MCP-Q08,MCP Server,Egress Blind Spots,50,Baseline,Periodic manual review of egress traffic logs.
+MCP-Q08-R04,MCP-Q08,MCP Server,Egress Blind Spots,75,Robust,Real-time traffic anomaly detection via Cloudflare Gateway.
+MCP-Q08-R05,MCP-Q08,MCP Server,Egress Blind Spots,100,Compliant,Inline DLP scanning and blocking via Zscaler.
+MCP-Q09-R01,MCP-Q09,MCP Server,Config Drift,0,Gap,MCP configs diverging from approved secure states.
+MCP-Q09-R02,MCP-Q09,MCP Server,Config Drift,25,Weak,Manual configuration updates and ad-hoc audits.
+MCP-Q09-R03,MCP-Q09,MCP Server,Config Drift,50,Baseline,Periodic automated schema and freshness checks.
+MCP-Q09-R04,MCP-Q09,MCP Server,Config Drift,75,Robust,GitOps-driven configuration management via Flux.
+MCP-Q09-R05,MCP-Q09,MCP Server,Config Drift,100,Compliant,Automated remediation of drift via ArgoCD and Kubernetes operators.
+MCP-Q10-R01,MCP-Q10,MCP Server,Shared MCP Abuse,0,Gap,One compromised MCP affects multiple agents.
+MCP-Q10-R02,MCP-Q10,MCP Server,Shared MCP Abuse,25,Weak,Universal shared instances for all agents.
+MCP-Q10-R03,MCP-Q10,MCP Server,Shared MCP Abuse,50,Baseline,Static isolation of tool instances by agent cohort.
+MCP-Q10-R04,MCP-Q10,MCP Server,Shared MCP Abuse,75,Robust,Per-agent namespaces and isolation via PostgreSQL.
+MCP-Q10-R05,MCP-Q10,MCP Server,Shared MCP Abuse,100,Compliant,Cryptographic isolation of per-task tool contexts and mTLS.
+MDL-Q01-R01,MDL-Q01,Model,Prompt Injection,0,Gap,Direct input processing. No filtering or safety evaluations; direct user input accepted.
+MDL-Q01-R02,MDL-Q01,Model,Prompt Injection,25,Weak,Keyword filtering. Basic keyword-based blacklists for sensitive terms.
+MDL-Q01-R03,MDL-Q01,Model,Prompt Injection,50,Baseline,Pre-deployment evals. Safety evaluations conducted before deployment using HELM.
+MDL-Q01-R04,MDL-Q01,Model,Prompt Injection,75,Robust,Multi-layer filters. Output filtering with L0/L1 guardrails.
+MDL-Q01-R05,MDL-Q01,Model,Prompt Injection,100,Compliant,Real-time protection. Continuous protection using Lakera Gandalf or NeMo Guardrails.
+MDL-Q02-R01,MDL-Q02,Model,Model Extraction,0,Gap,Unrestricted access. No query monitoring or extraction detection.
+MDL-Q02-R02,MDL-Q02,Model,Model Extraction,25,Weak,Standard throttling. Basic rate limiting enforced at the API gateway.
+MDL-Q02-R03,MDL-Q02,Model,Model Extraction,50,Baseline,Pattern monitoring. Monitoring for high-frequency extraction patterns.
+MDL-Q02-R04,MDL-Q02,Model,Model Extraction,75,Robust,Embedded signals. Detectable watermarks embedded in model outputs.
+MDL-Q02-R05,MDL-Q02,Model,Model Extraction,100,Compliant,Verifiable signatures. Hidden signals detectable by verifiers using Tree-Ring.
+MDL-Q03-R01,MDL-Q03,Model,Adversarial Evasion,0,Gap,No robustness testing. Vulnerable to misclassification from crafted inputs.
+MDL-Q03-R02,MDL-Q03,Model,Adversarial Evasion,25,Weak,Input sanitisation. Basic sanitisation of inputs to remove malicious characters.
+MDL-Q03-R03,MDL-Q03,Model,Adversarial Evasion,50,Baseline,Robustness benchmarks. Adversarial benchmarks run pre-deployment using Robustness Gym.
+MDL-Q03-R04,MDL-Q03,Model,Adversarial Evasion,75,Robust,Augmented training. Training sets augmented with adversarial examples.
+MDL-Q03-R05,MDL-Q03,Model,Adversarial Evasion,100,Compliant,Certified defences. Use of certified defences and Adversarial Robustness Toolbox (ART).
+MDL-Q04-R01,MDL-Q04,Model,Jailbreaking,0,Gap,No safety gates. Model can generate harmful content without restriction.
+MDL-Q04-R02,MDL-Q04,Model,Jailbreaking,25,Weak,Base model safety. Reliance on the base provider's internal safety tuning.
+MDL-Q04-R03,MDL-Q04,Model,Jailbreaking,50,Baseline,Manual red-teaming. Irregular manual red-teaming exercises pre-release.
+MDL-Q04-R04,MDL-Q04,Model,Jailbreaking,75,Robust,Automated moderation. Quarterly safety benchmarks using HELM or Garak.
+MDL-Q04-R05,MDL-Q04,Model,Jailbreaking,100,Compliant,Continuous testing. External pentesting with Bugcrowd or Synack and real-time updates.
+MDL-Q05-R01,MDL-Q05,Model,Model Inversion,0,Gap,No training privacy. Training data easily reconstructed from model outputs.
+MDL-Q05-R02,MDL-Q05,Model,Model Inversion,25,Weak,Basic masking. Standard identification and masking of primary identifiers.
+MDL-Q05-R03,MDL-Q05,Model,Model Inversion,50,Baseline,Reconstruction tests. Periodic manual testing for data reconstruction.
+MDL-Q05-R04,MDL-Q05,Model,Model Inversion,75,Robust,Validated redaction. Automated masking at ingestion with SDV or Faker.
+MDL-Q05-R05,MDL-Q05,Model,Model Inversion,100,Compliant,Differential privacy. Privacy-preserving training implemented via Opacus.
+MDL-Q06-R01,MDL-Q06,Model,Overconfidence,0,Gap,No confidence signals. Predictions lack reliable uncertainty measures.
+MDL-Q06-R02,MDL-Q06,Model,Overconfidence,25,Weak,Manual sanity checks. User-driven identification of overconfident errors.
+MDL-Q06-R03,MDL-Q06,Model,Overconfidence,50,Baseline,Temperature scaling. Calibration techniques applied to normalise output probabilities.
+MDL-Q06-R04,MDL-Q06,Model,Overconfidence,75,Robust,Uncertainty heads. Implementation of Bayesian heads or MC dropout for estimation.
+MDL-Q06-R05,MDL-Q06,Model,Overconfidence,100,Compliant,Automated fallback. Low-confidence scores trigger human review via n8n or feature flags.
+MDL-Q07-R01,MDL-Q07,Model,Bias Amplification,0,Gap,No bias checks. Societal biases in training data are amplified unchecked.
+MDL-Q07-R02,MDL-Q07,Model,Bias Amplification,25,Weak,Manual audits. Occasional manual reviews for demographic bias.
+MDL-Q07-R03,MDL-Q07,Model,Bias Amplification,50,Baseline,Safety benchmarks. Standard bias benchmarks run as part of HELM evaluations.
+MDL-Q07-R04,MDL-Q07,Model,Bias Amplification,75,Robust,Automated monitoring. Continuous monitoring of outputs for biased patterns.
+MDL-Q07-R05,MDL-Q07,Model,Bias Amplification,100,Compliant,Real-time mitigation. Dynamic output guardrails using Perspective API.
+MDL-Q08-R01,MDL-Q08,Model,Backdoor Triggers,0,Gap,No scanning. Hidden triggers allow targeted malicious behaviour.
+MDL-Q08-R02,MDL-Q08,Model,Backdoor Triggers,25,Weak,Provider reliance. Reliance on base-model provider safety claims.
+MDL-Q08-R03,MDL-Q08,Model,Backdoor Triggers,50,Baseline,Data scanning. Periodic scanning of fine-tuning data for statistical anomalies.
+MDL-Q08-R04,MDL-Q08,Model,Backdoor Triggers,75,Robust,Outlier detection. Pre-training outlier detection using Alibi Detect or ART.
+MDL-Q08-R05,MDL-Q08,Model,Backdoor Triggers,100,Compliant,Full sanitisation. Training loss monitoring and cryptographic validation of data.
+MDL-Q09-R01,MDL-Q09,Model,Performance Drift,0,Gap,No observability. Silent degradation goes unnoticed after deployment.
+MDL-Q09-R02,MDL-Q09,Model,Performance Drift,25,Weak,User reporting. Ad-hoc feedback loops for performance issues.
+MDL-Q09-R03,MDL-Q09,Model,Performance Drift,50,Baseline,Metric monitoring. Automated tracking of latency and error rates.
+MDL-Q09-R04,MDL-Q09,Model,Performance Drift,75,Robust,Continuous tracing. Decision observability implemented via Langfuse or Phoenix.
+MDL-Q09-R05,MDL-Q09,Model,Performance Drift,100,Compliant,Automated failover. Drift detection triggers failover to Challenger Models via FastAPI.
+MDL-Q10-R01,MDL-Q10,Model,Watermark Removal,0,Gap,No traceability. Traceability markers are absent or easily removed.
+MDL-Q10-R02,MDL-Q10,Model,Watermark Removal,25,Weak,Simple text markers. Basic text-based watermarking easily bypassed.
+MDL-Q10-R03,MDL-Q10,Model,Watermark Removal,50,Baseline,Standard signatures. Standard watermark signatures without verification tools.
+MDL-Q10-R04,MDL-Q10,Model,Watermark Removal,75,Robust,Tree-Ring Signals. Advanced hidden signals embedded in generations.
+MDL-Q10-R05,MDL-Q10,Model,Watermark Removal,100,Compliant,"Robust watermarks. Undetectable, robust watermarks verifiable via OpenAI Watermarking tools."
+SYS-Q01-R01,SYS-Q01,System,Orchestration Hijack,0,Gap,Malicious signals trigger erroneous workflows without validation.
+SYS-Q01-R02,SYS-Q01,System,Orchestration Hijack,25,Weak,Manual review of a sample of input signals.
+SYS-Q01-R03,SYS-Q01,System,Orchestration Hijack,50,Baseline,Signals validated against fixed schemas via Pydantic.
+SYS-Q01-R04,SYS-Q01,System,Orchestration Hijack,75,Robust,Multi-source validation with anomaly scoring via Great Expectations.
+SYS-Q01-R05,SYS-Q01,System,Orchestration Hijack,100,Compliant,Trust scoring and historical accuracy weighting via Bayesian trust models.
+SYS-Q02-R01,SYS-Q02,System,Compliance Violations,0,Gap,AI recommendations violate business rules or regulatory requirements.
+SYS-Q02-R02,SYS-Q02,System,Compliance Violations,25,Weak,Ad-hoc manual audits of AI-generated decisions.
+SYS-Q02-R03,SYS-Q02,System,Compliance Violations,50,Baseline,Periodic audits and documented governance policies.
+SYS-Q02-R04,SYS-Q02,System,Compliance Violations,75,Robust,Output validation against hardcoded rules using Easy Rules or Drools.
+SYS-Q02-R05,SYS-Q02,System,Compliance Violations,100,Compliant,Real-time enforcement via automated governance platforms like Drata or Vanta.
+SYS-Q03-R01,SYS-Q03,System,Shadow AI,0,Gap,Unauthorised/unknown AI systems operating in the environment.
+SYS-Q03-R02,SYS-Q03,System,Shadow AI,25,Weak,Manual inventory of AI assets updated on an irregular basis.
+SYS-Q03-R03,SYS-Q03,System,Shadow AI,50,Baseline,Discovery scans on network traffic to identify AI endpoints.
+SYS-Q03-R04,SYS-Q03,System,Shadow AI,75,Robust,Automated discovery and integration monitoring via Prometheus.
+SYS-Q03-R05,SYS-Q03,System,Shadow AI,100,Compliant,Real-time blocking and full observability via ELK stack or ClickHouse.
+SYS-Q04-R01,SYS-Q04,System,Decision Drift,0,Gap,Silent degradation of AI recommendations over time.
+SYS-Q04-R02,SYS-Q04,System,Decision Drift,25,Weak,User-reported errors only; no proactive tracking.
+SYS-Q04-R03,SYS-Q04,System,Decision Drift,50,Baseline,Automated tracking of high-level performance metrics.
+SYS-Q04-R04,SYS-Q04,System,Decision Drift,75,Robust,Continuous drift and latency monitoring via Langfuse or Phoenix.
+SYS-Q04-R05,SYS-Q04,System,Decision Drift,100,Compliant,Automated retuning or failover triggered by Great Expectations quality gates.
+SYS-Q05-R01,SYS-Q05,System,Integration Abuse,0,Gap,Compromised AI systems affect downstream production systems.
+SYS-Q05-R02,SYS-Q05,System,Integration Abuse,25,Weak,No isolation between AI and downstream infra.
+SYS-Q05-R03,SYS-Q05,System,Integration Abuse,50,Baseline,Basic egress filtering and rate limiting applied.
+SYS-Q05-R04,SYS-Q05,System,Integration Abuse,75,Robust,Integrated DLP and downstream policy checks using Nightfall AI.
+SYS-Q05-R05,SYS-Q05,System,Integration Abuse,100,Compliant,Zero-trust integration and per-action auth via OPA for Terraform or Sentinel.
+SYS-Q06-R01,SYS-Q06,System,Audit Gaps,0,Gap,Inability to reconstruct decisions during incident investigation.
+SYS-Q06-R02,SYS-Q06,System,Audit Gaps,25,Weak,No logging of AI decisions or system signals.
+SYS-Q06-R03,SYS-Q06,System,Audit Gaps,50,Baseline,Basic unstructured text logs of system activity.
+SYS-Q06-R04,SYS-Q06,System,Audit Gaps,75,Robust,Structured logging of all decision paths via ELK stack.
+SYS-Q06-R05,SYS-Q06,System,Audit Gaps,100,Compliant,"Tamper-proof, replayable traces stored in ClickHouse."
+SYS-Q07-R01,SYS-Q07,System,Resource Exhaustion,0,Gap,"AI consumes disproportionate infra, causing availability failures."
+SYS-Q07-R02,SYS-Q07,System,Resource Exhaustion,25,Weak,No limits on AI compute or API consumption.
+SYS-Q07-R03,SYS-Q07,System,Resource Exhaustion,50,Baseline,Manual monitoring of infrastructure costs.
+SYS-Q07-R04,SYS-Q07,System,Resource Exhaustion,75,Robust,Static per-asset quotas enforced via Redis-backed limits.
+SYS-Q07-R05,SYS-Q07,System,Resource Exhaustion,100,Compliant,Predictive scaling and real-time throttling via FastAPI-Limiter.
+SYS-Q08-R01,SYS-Q08,System,False Automation,0,Gap,Over-automation causing operational chaos.
+SYS-Q08-R02,SYS-Q08,System,False Automation,25,Weak,Fully autonomous workflows with no human gates.
+SYS-Q08-R03,SYS-Q08,System,False Automation,50,Baseline,Static approval gates for all workflows regardless of risk.
+SYS-Q08-R04,SYS-Q08,System,False Automation,75,Robust,Risk-weighted gating and Airflow sensors for high-impact tasks.
+SYS-Q08-R05,SYS-Q08,System,False Automation,100,Compliant,Hard human-in-the-loop sign-off via n8n or Zapier Enterprise.
+SYS-Q09-R01,SYS-Q09,System,Vendor Lock-in,0,Gap,Single AI vendor creating strategic switching costs.
+SYS-Q09-R02,SYS-Q09,System,Vendor Lock-in,25,Weak,Deep integration with a single proprietary model/API.
+SYS-Q09-R03,SYS-Q09,System,Vendor Lock-in,50,Baseline,Standardised API usage to allow for model swapping.
+SYS-Q09-R04,SYS-Q09,System,Vendor Lock-in,75,Robust,Abstraction layers and multi-vendor threat modelling via Threat Dragon.
+SYS-Q09-R05,SYS-Q09,System,Vendor Lock-in,100,Compliant,"Fully portable, model-agnostic architecture validated through STRIDE workshops."
+SYS-Q10-R01,SYS-Q10,System,Ethical Drift,0,Gap,Gradual erosion of ethical standards in AI outcomes.
+SYS-Q10-R02,SYS-Q10,System,Ethical Drift,25,Weak,No ethical evaluation or impact monitoring.
+SYS-Q10-R03,SYS-Q10,System,Ethical Drift,50,Baseline,Occasional manual ethical reviews of AI behavior.
+SYS-Q10-R04,SYS-Q10,System,Ethical Drift,75,Robust,Automated ethical patterns monitored via Langfuse observability.
+SYS-Q10-R05,SYS-Q10,System,Ethical Drift,100,Compliant,Real-time ethical guardrails and compliance mapping via Drata or Vanta.
