@@ -139,6 +139,7 @@ def main() -> int:
 
     # Display NOTICE messages
     if result.stderr:
+        print(f"[DEBUG] {result.stderr}")
         for line in result.stderr.splitlines():
             if "NOTICE:" in line:
                 notice = line.split("NOTICE:")[-1].strip()

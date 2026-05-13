@@ -28,21 +28,21 @@ def convert_xlsx_to_csv(xlsx_path: Path) -> bool:
         True if conversion succeeded, False otherwise.
     """
     if not xlsx_path.exists():
-        print(f"⚠️  {xlsx_path} not found")
+        print(f"WARN {xlsx_path} not found")
         return False
 
     if xlsx_path.suffix.lower() != ".xlsx":
-        print(f"⚠️  {xlsx_path} is not an .xlsx file")
+        print(f"WARN {xlsx_path} is not an .xlsx file")
         return False
 
     try:
         df = pd.read_excel(xlsx_path)
         csv_path = xlsx_path.with_suffix(".csv")
         df.to_csv(csv_path, index=False, encoding="utf-8", quoting=1)  # quoting=1 = QUOTE_ALL
-        print(f"✅ {xlsx_path} → {csv_path}")
+        print(f"OK {xlsx_path} -> {csv_path}")
         return True
     except Exception as e:
-        print(f"❌ Error converting {xlsx_path}: {e}")
+        print(f"ERROR converting {xlsx_path}: {e}")
         return False
 
 

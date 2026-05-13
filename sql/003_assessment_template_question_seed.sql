@@ -6,6 +6,7 @@
 -- Create temp table (persists for session)
 CREATE TEMP TABLE IF NOT EXISTS temp_questions (
     af_name text,
+    at_name text,
     atmp_code text,
     atq_code text,
     atq_text text,

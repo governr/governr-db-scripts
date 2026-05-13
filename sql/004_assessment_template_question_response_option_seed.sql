@@ -5,8 +5,8 @@
 
 -- Create temp table (persists for session)
 CREATE TEMP TABLE IF NOT EXISTS temp_response_options (
-    atq_code text,
     atqro_code text,
+    atq_code text,
     atqro_label text,
     atqro_sequence integer,
     atqro_is_default text,

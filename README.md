@@ -1,6 +1,6 @@
-# Governr DB Scripts
+# governr DB Scripts
 
-Database seeding and management scripts for the Governr application.
+Database seeding and management scripts for the governr application.
 
 ## Project Structure
 
@@ -9,7 +9,7 @@ governr-db-scripts/
 ├── .env                    # Database connection credentials
 ├── requirements.txt        # Python dependencies
 ├── data/
-│   └── governr-ai-risk/    # Assessment set: Governr AI Risk Framework
+│   └── governr-ai-risk/    # Assessment set: governr AI Risk Framework
 │       ├── assessment_framework.csv                        # Seed data for assessment frameworks
 │       ├── assessment_template.csv                         # Seed data for assessment templates
 │       ├── assessment_template_question.csv                # Seed data for template questions
@@ -54,7 +54,7 @@ To add a new assessment set (e.g., `iso-42001`):
 
 - Python 3.12+
 - PostgreSQL client (psql)
-- Access to the Governr database
+- Access to the governr database
 
 ### Installation
 
@@ -150,7 +150,7 @@ Seeds must be run in order due to foreign key dependencies:
 
 ## Assessment Data
 
-### Governr Position AI Risk Framework
+### governr Position AI Risk Framework
 
 The seed data includes the **governr Position AI Risk Framework** with 6 specialised assessment templates:
 

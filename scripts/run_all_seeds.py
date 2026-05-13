@@ -201,10 +201,10 @@ def main() -> int:
 
         if success:
             success_count += 1
-            print(f"    ✓ Done")
+            print(f"    OK Done")
         else:
             failed_file = sql_file.name
-            print(f"    ✗ Failed")
+            print(f"    FAILED")
             break
 
         print()
